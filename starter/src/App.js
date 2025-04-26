@@ -7,8 +7,8 @@ import Read from "./components/Read";
 function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
 
-  const [bookData, setBookData] = useState([
-    [
+  const [bookData, setBookData] = useState({
+    "Currently Reading": [
       {
         width: 128,
         height: 193,
@@ -24,7 +24,7 @@ function App() {
         author: "Orson Scott Card",
       },
     ],
-    [
+    "Want to read": [
       {
         width: 128,
         height: 193,
@@ -40,7 +40,7 @@ function App() {
         author: "J.K. Rowling",
       },
     ],
-    [
+    "Read": [
       {
         width: 128,
         height: 192,
@@ -62,9 +62,8 @@ function App() {
         title: "The Adventures of Tom Sawyer",
         author: "Mark Twain",
       },
-    ]
-  ]
-  );
+    ],
+  });
 
   return (
     <div className="app">
@@ -96,16 +95,7 @@ function App() {
           <div className="list-books-content">
             <div>
               <div className="bookshelf">
-                <h2 className="bookshelf-title">Currently Reading</h2>
-                <CurrentlyReading bookData={bookData[0]} />
-              </div>
-              <div className="bookshelf">
-                <h2 className="bookshelf-title">Want to Read</h2>
-                <WantToRead bookData={bookData[1]}/>
-              </div>
-              <div className="bookshelf">
-                <h2 className="bookshelf-title">Read</h2>
-                <Read bookData={bookData[2]}/>
+                <CurrentlyReading bookData={bookData} />
               </div>
             </div>
           </div>
