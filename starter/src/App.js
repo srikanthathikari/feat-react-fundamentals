@@ -1,8 +1,6 @@
 import "./App.css";
 import { useState } from "react";
 import CurrentlyReading from "./components/CurrentlyReading";
-import WantToRead from "./components/WantToRead";
-import Read from "./components/Read";
 
 function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
@@ -65,6 +63,12 @@ function App() {
     ],
   });
 
+ const updateData = (whereToAdd, whatArray) => {
+  setBookData(
+    (currentData) => ({...currentData, [whereToAdd]: [...currentData[whereToAdd], whatArray]})
+);
+};
+
   return (
     <div className="app">
       {showSearchPage ? (
@@ -95,7 +99,7 @@ function App() {
           <div className="list-books-content">
             <div>
               <div className="bookshelf">
-                <CurrentlyReading bookData={bookData} />
+                <CurrentlyReading bookData={bookData} updateData = {updateData} />
               </div>
             </div>
           </div>

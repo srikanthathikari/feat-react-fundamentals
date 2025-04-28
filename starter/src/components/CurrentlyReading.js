@@ -1,6 +1,13 @@
 import { useState } from "react";
 
-const CurrentlyReading = ({ bookData }) => {
+const CurrentlyReading = ({ bookData, updateData }) => {
+  const onChangeHandler = (event, bookItem) => {
+    const whereToAdd = event.target.value;
+    const whatArray = bookItem
+
+    updateData(whereToAdd, whatArray);
+  
+  }
   return (
     <div>
       {Object.keys(bookData).map((book) => (
@@ -9,6 +16,7 @@ const CurrentlyReading = ({ bookData }) => {
           <div className="bookshelf-books">
             <ol className="books-grid">
               {bookData[book].map((bookItem, index) => (
+                
                 <li key={index}>
                   <div className="book">
                     <div className="book-top">
@@ -21,13 +29,12 @@ const CurrentlyReading = ({ bookData }) => {
                         }}
                       ></div>
                       <div className="book-shelf-changer">
-                        <select>
-                          <option value="none">Move to...</option>
-                          <option value="currentlyReading">
+                        <select onChange={(event) => onChangeHandler(event, bookItem)}>
+                          <option value="Currently Reading">
                             Currently Reading
                           </option>
-                          <option value="wantToRead">Want to Read</option>
-                          <option value="read">Read</option>
+                          <option value="Want to read">Want to Read</option>
+                          <option value="Read">Read</option>
                           <option value="none">None</option>
                         </select>
                       </div>
