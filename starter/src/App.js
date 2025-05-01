@@ -64,10 +64,16 @@ function App() {
   });
 
  const updateData = (whereToAdd, whatArray) => {
-  setBookData(
-    (currentData) => ({...currentData, [whereToAdd]: [...currentData[whereToAdd], whatArray]})
-);
-};
+     setBookData(
+    (currentData) => ({...currentData, [whereToAdd]:[...currentData[whereToAdd], whatArray]}))
+
+}
+
+const removeData = (whereToRemove, whatArray) => {
+  setBookData({...bookData, 
+    [whereToRemove] : bookData[whereToRemove].filter(book => book !== whatArray)
+  })
+}
 
   return (
     <div className="app">
@@ -99,7 +105,7 @@ function App() {
           <div className="list-books-content">
             <div>
               <div className="bookshelf">
-                <CurrentlyReading bookData={bookData} updateData = {updateData} />
+                <CurrentlyReading bookData={bookData} updateData = {updateData} removeData = {removeData} />
               </div>
             </div>
           </div>

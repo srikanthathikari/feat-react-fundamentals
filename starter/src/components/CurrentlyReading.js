@@ -1,10 +1,13 @@
 import { useState } from "react";
 
-const CurrentlyReading = ({ bookData, updateData }) => {
-  const onChangeHandler = (event, bookItem) => {
+const CurrentlyReading = ({ bookData, updateData, removeData }) => {
+  const onChangeHandler = (event, bookItem, book) => {
     const whereToAdd = event.target.value;
-    const whatArray = bookItem
+    const whatArray = bookItem;
+    const whereToRemove = book;
 
+    
+    removeData(whereToRemove, whatArray)
     updateData(whereToAdd, whatArray);
   
   }
@@ -29,13 +32,10 @@ const CurrentlyReading = ({ bookData, updateData }) => {
                         }}
                       ></div>
                       <div className="book-shelf-changer">
-                        <select onChange={(event) => onChangeHandler(event, bookItem)}>
-                          <option value="Currently Reading">
-                            Currently Reading
-                          </option>
-                          <option value="Want to read">Want to Read</option>
+                        <select value={book} onChange={(event) => onChangeHandler(event, bookItem, book)}>
+                          <option value="Currently Reading">Currently Reading</option>
+                          <option value="Want to read">Want to read</option>
                           <option value="Read">Read</option>
-                          <option value="none">None</option>
                         </select>
                       </div>
                     </div>
