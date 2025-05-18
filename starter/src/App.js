@@ -69,7 +69,7 @@ const updateSearchChangeHanlder = (status) => {
 
   return (
     <div className="app">
-      {showSearchPage ? (<Search updateSearchChangeHanlder={updateSearchChangeHanlder} updateData = {updateData}/>) : (
+      {showSearchPage ? (<Search updateSearchChangeHanlder={updateSearchChangeHanlder} updateData = {updateData} bookData={bookData} />) : (
         <div className="list-books">
           <div className="list-books-title">
             <h1>MyReads</h1>
